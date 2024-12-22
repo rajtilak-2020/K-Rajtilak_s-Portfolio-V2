@@ -586,66 +586,61 @@
       const terminal = document.querySelector('.terminal');
       const progress = document.querySelector('.progress');
       const main = document.querySelector('main');
-
+    
       const commands = [
         { text: 'Initializing portfolio...', delay: 100 },
-        { text: 'TCP Connection Establishment successful...', delay: 900 },
-        { text: 'SSL Handshake Initiated...', delay: 100 },
-        { text: 'Loading External Resources...', delay: 100 },
-        { text: 'Launching Webpage...', delay: 100 }
+        { text: 'Establishing secure TCP connection...', delay: 900 },
+        { text: 'Fetching external resources...', delay: 800 },
+        { text: 'Verifying environment settings...', delay: 500 },
+        { text: 'Launching webpage...', delay: 300 },
       ];
-
-      async function typeCommand(text, delay) {
+    
+      const typeCommand = async (text, delay) => {
         const line = document.createElement('div');
         line.className = 'command-line';
-        
-        const prompt = document.createElement('span');
-        prompt.className = 'prompt';
-        prompt.textContent = '>';
-        
-        const command = document.createElement('span');
-        command.className = 'command';
-        
-        const cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        
-        line.appendChild(prompt);
-        line.appendChild(command);
-        line.appendChild(cursor);
+    
+        line.innerHTML = `
+          <span class="prompt">></span>
+          <span class="command"></span>
+          <span class="cursor">|</span>
+        `;
+    
         terminal.appendChild(line);
-
-        await new Promise(resolve => setTimeout(resolve, 100));
-
+        const command = line.querySelector('.command');
+    
+        // Typing animation
         for (const char of text) {
           command.textContent += char;
-          await new Promise(resolve => setTimeout(resolve, 30));
+          await new Promise(resolve => setTimeout(resolve, 30)); // Typing speed
         }
-
+    
         await new Promise(resolve => setTimeout(resolve, delay));
-      }
-
-      async function startPreloader() {
+        line.querySelector('.cursor').remove(); // Remove the cursor after typing
+      };
+    
+      const startPreloader = async () => {
         const progressIncrement = 100 / commands.length;
         let totalProgress = 0;
-
+    
         for (const command of commands) {
           await typeCommand(command.text, command.delay);
           totalProgress += progressIncrement;
           progress.style.width = `${totalProgress}%`;
         }
-
+    
         await new Promise(resolve => setTimeout(resolve, 500));
         preloader.classList.add('fade-out');
-        
+    
         setTimeout(() => {
           preloader.remove();
           main.style.display = 'block';
         }, 500);
-      }
-
+      };
+    
       startPreloader().catch(console.error);
     });
-  </script>
+    </script>
+    
 
   <footer id="footer" class="footer position-relative light-background">
       <div class="social-links d-flex justify-content-center">

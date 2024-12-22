@@ -57,17 +57,7 @@
     background-color: #ff4d4d;
     animation: blink 0.8s steps(2, start) infinite;
   }
-  
-  .progress {
-    height: 4px;
-    background: #ff4d4d;
-    width: 0;
-    margin-top: 2rem;
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
+
   @keyframes blink {
     0%, 100% {
       opacity: 1;

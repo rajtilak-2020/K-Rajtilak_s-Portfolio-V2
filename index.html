@@ -20,8 +20,13 @@
   <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/preloader.css" rel="stylesheet">
 </head>
 <body class="index-page">
+  <div class="preloader">
+    <div class="terminal"></div>
+    <div class="progress"></div>
+  </div>
   <header id="header" class="header d-flex flex-column justify-content-center">
     <i class="header-toggle d-xl-none bi bi-list"></i>
     <nav id="navmenu" class="navmenu">
@@ -577,6 +582,75 @@
 
   </main>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const preloader = document.querySelector('.preloader');
+      const terminal = document.querySelector('.terminal');
+      const progress = document.querySelector('.progress');
+      const main = document.querySelector('main');
+
+      const commands = [
+        { text: 'Initializing portfolio...', delay: 500 },
+        { text: 'Loading personal information...', delay: 600 },
+        { text: 'Fetching project details...', delay: 700 },
+        { text: 'Loading IoT and robotics experience...', delay: 800 },
+        { text: 'Compiling skills and certifications...', delay: 600 },
+        { text: 'Optimizing UI components...', delay: 500 },
+        { text: 'Launching portfolio interface...', delay: 400 }
+      ];
+
+      async function typeCommand(text, delay) {
+        const line = document.createElement('div');
+        line.className = 'command-line';
+        
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = '>';
+        
+        const command = document.createElement('span');
+        command.className = 'command';
+        
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        
+        line.appendChild(prompt);
+        line.appendChild(command);
+        line.appendChild(cursor);
+        terminal.appendChild(line);
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        for (const char of text) {
+          command.textContent += char;
+          await new Promise(resolve => setTimeout(resolve, 30));
+        }
+
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+
+      async function startPreloader() {
+        const progressIncrement = 100 / commands.length;
+        let totalProgress = 0;
+
+        for (const command of commands) {
+          await typeCommand(command.text, command.delay);
+          totalProgress += progressIncrement;
+          progress.style.width = `${totalProgress}%`;
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+        preloader.classList.add('fade-out');
+        
+        setTimeout(() => {
+          preloader.remove();
+          main.style.display = 'block';
+        }, 500);
+      }
+
+      startPreloader().catch(console.error);
+    });
+  </script>
+
   <footer id="footer" class="footer position-relative light-background">
       <div class="social-links d-flex justify-content-center">
         <a href="https://github.com/rajtilak-2020"><i class="bi bi-github"></i></a>
@@ -607,7 +681,23 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
+  <script type="module">
+    import { Preloader } from './assets/js/preloader/preloader.js';
+    
+    // Initialize preloader after DOM is ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      const preloader = new Preloader('preloader-container');
+      try {
+        await preloader.start();
+        // Show main content after preloader finishes
+        document.getElementById('main').style.display = 'block';
+      } catch (error) {
+        console.error('Preloader error:', error);
+        // Fallback: Show main content if preloader fails
+        document.getElementById('main').style.display = 'block';
+      }
+    });
+  </script>
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 </body>

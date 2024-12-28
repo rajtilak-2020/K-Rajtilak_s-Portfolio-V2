@@ -916,6 +916,68 @@ transform-origin: top right;
 }
 
 /*--------------------------------------------------------------
+# Blog section
+--------------------------------------------------------------*/
+#blog h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: 1px; 
+  animation: fadeInDown 1s ease;
+}
+
+#blog .btn-primary {
+  background-color: #ee0000;
+  border-color: #ee0000;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#blog .btn-primary:hover {
+  background-color: #cc0000;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+  border-color: #000000;
+  transform: scale(1.05);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+#blog .section-title {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+#blog .btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+
+
+/*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
 .services .service-item {

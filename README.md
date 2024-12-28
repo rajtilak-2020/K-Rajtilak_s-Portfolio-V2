@@ -6,7 +6,7 @@
 
 ## 🖌️ **Live Preview**
 🌐 **Explore Here:** [Portfolio](https://rajtilak-2020.github.io/K-Rajtilak_s-Portfolio-V2/)  
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3ccea208-7061-468b-aaac-ded7c31c80f3/deploy-status)](https://app.netlify.com/sites/krajtilak/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ccea208-7061-468b-aaac-ded7c31c80f3/deploy-status)](https://krajtilak.netlify.app)
 
 ---
 

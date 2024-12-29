@@ -1,190 +1,198 @@
-(function () {
+(function() {
   "use strict";
 
   /**
-   * Utility function for debouncing event listeners
-   */
-  function debounce(func, wait = 100) {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  /**
-   * DOM Elements
+   * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
-  const preloader = document.querySelector('#preloader');
-  const scrollTopBtn = document.querySelector('.scroll-top');
-  const navmenuLinks = document.querySelectorAll('.navmenu a');
-  const typedElement = document.querySelector('.typed');
-  const skillsItems = document.querySelectorAll('.skills-animation');
 
-  /**
-   * Header toggle functionality
-   */
-  if (headerToggleBtn) {
-    headerToggleBtn.addEventListener('click', () => {
-      document.querySelector('#header').classList.toggle('header-show');
-      headerToggleBtn.classList.toggle('bi-list');
-      headerToggleBtn.classList.toggle('bi-x');
-    });
+  function headerToggle() {
+    document.querySelector('#header').classList.toggle('header-show');
+    headerToggleBtn.classList.toggle('bi-list');
+    headerToggleBtn.classList.toggle('bi-x');
   }
+  headerToggleBtn.addEventListener('click', headerToggle);
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  navmenuLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
       if (document.querySelector('.header-show')) {
-        headerToggleBtn.click();
+        headerToggle();
+      }
+    });
+
+  });
+
+  
+  /**
+   * Toggle mobile nav dropdowns
+   */
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+    navmenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
+  });
+
+  /**
+   * Preloader
+   */
+  const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove();
+    });
+  }
+
+  /**
+   * Scroll top button
+   */
+  let scrollTop = document.querySelector('.scroll-top');
+
+  function toggleScrollTop() {
+    if (scrollTop) {
+      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+    }
+  }
+  scrollTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  window.addEventListener('load', toggleScrollTop);
+  document.addEventListener('scroll', toggleScrollTop);
+
+  /**
+   * Animation on scroll function and init
+   */
+  function aosInit() {
+    AOS.init({
+      duration: 600,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }
+  window.addEventListener('load', aosInit);
+
+  /**
+   * Init typed.js
+   */
+  const selectTyped = document.querySelector('.typed');
+  if (selectTyped) {
+    let typed_strings = selectTyped.getAttribute('data-typed-items');
+    typed_strings = typed_strings.split(',');
+    new Typed('.typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000
+    });
+  }
+
+  /**
+   * Initiate Pure Counter
+   */
+  new PureCounter();
+
+  /**
+   * Animate the skills items on reveal
+   */
+  let skillsAnimation = document.querySelectorAll('.skills-animation');
+  skillsAnimation.forEach((item) => {
+    new Waypoint({
+      element: item,
+      offset: '80%',
+      handler: function(direction) {
+        let progress = item.querySelectorAll('.progress .progress-bar');
+        progress.forEach(el => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%';
+        });
       }
     });
   });
 
   /**
-   * Toggle mobile nav dropdowns
+   * Initiate glightbox
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach((dropdown) => {
-    dropdown.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.parentNode.classList.toggle('active');
-      dropdown.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-    });
+  const glightbox = GLightbox({
+    selector: '.glightbox'
   });
 
   /**
-   * Preloader removal
+   * Init isotope layout and filters
    */
-  if (preloader) {
-    window.addEventListener('load', () => preloader.remove());
-  }
+  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
-  /**
-   * Scroll-to-top button functionality
-   */
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const scrollToTop = () => {
-        const currentPosition = window.scrollY;
-        if (currentPosition > 0) {
-          window.scrollTo({ top: currentPosition - currentPosition / 8, behavior: 'auto' });
-          requestAnimationFrame(scrollToTop);
-        }
-      };
-      requestAnimationFrame(scrollToTop);
-    });
-
-    const toggleScrollTopVisibility = debounce(() => {
-      scrollTopBtn.classList.toggle('active', window.scrollY > 100);
-    });
-
-    window.addEventListener('scroll', toggleScrollTopVisibility);
-  }
-
-  /**
-   * Initialize AOS (Animation on Scroll)
-   */
-  const initializeAOS = () => {
-    AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
-  };
-  window.addEventListener('load', initializeAOS);
-
-  /**
-   * Initialize typed.js
-   */
-  if (typedElement) {
-    const typedStrings = typedElement.getAttribute('data-typed-items').split(',');
-    new Typed('.typed', {
-      strings: typedStrings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000,
-    });
-  }
-
-  /**
-   * Initialize Pure Counter
-   */
-  new PureCounter();
-
-  /**
-   * Animate skills progress bars
-   */
-  skillsItems.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: () => {
-        item.querySelectorAll('.progress .progress-bar').forEach((bar) => {
-          bar.style.width = bar.getAttribute('aria-valuenow') + '%';
-        });
-      },
-    });
-  });
-
-  /**
-   * Initialize GLightbox
-   */
-  GLightbox({ selector: '.glightbox' });
-
-  /**
-   * Initialize isotope layout and filters
-   */
-  document.querySelectorAll('.isotope-layout').forEach((layoutElement) => {
-    const container = layoutElement.querySelector('.isotope-container');
-    if (!container) return;
-
-    const layoutMode = layoutElement.getAttribute('data-layout') || 'masonry';
-    const defaultFilter = layoutElement.getAttribute('data-default-filter') || '*';
-    const sortBy = layoutElement.getAttribute('data-sort') || 'original-order';
-
-    imagesLoaded(container, () => {
-      const isotopeInstance = new Isotope(container, {
+    let initIsotope;
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
-        layoutMode,
-        filter: defaultFilter,
-        sortBy,
-      });
-
-      layoutElement.querySelectorAll('.isotope-filters li').forEach((filterBtn) => {
-        filterBtn.addEventListener('click', () => {
-          layoutElement.querySelector('.filter-active')?.classList.remove('filter-active');
-          filterBtn.classList.add('filter-active');
-          isotopeInstance.arrange({ filter: filterBtn.getAttribute('data-filter') });
-          initializeAOS();
-        });
+        layoutMode: layout,
+        filter: filter,
+        sortBy: sort
       });
     });
+
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
+      filters.addEventListener('click', function() {
+        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+        this.classList.add('filter-active');
+        initIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        if (typeof aosInit === 'function') {
+          aosInit();
+        }
+      }, false);
+    });
+
   });
 
   /**
-   * Initialize Swiper sliders
+   * Init swiper sliders
    */
-  const initializeSwipers = () => {
-    document.querySelectorAll('.init-swiper').forEach((swiperElement) => {
-      const config = JSON.parse(swiperElement.querySelector('.swiper-config').textContent.trim());
-      new Swiper(swiperElement, config);
+  function initSwiper() {
+    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+      let config = JSON.parse(
+        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+      );
+
+      if (swiperElement.classList.contains("swiper-tab")) {
+        initSwiperWithCustomPagination(swiperElement, config);
+      } else {
+        new Swiper(swiperElement, config);
+      }
     });
-  };
-  window.addEventListener('load', initializeSwipers);
+  }
+
+  window.addEventListener("load", initSwiper);
 
   /**
-   * Scroll to hash position on load
+   * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', () => {
+  window.addEventListener('load', function(e) {
     if (window.location.hash) {
-      const targetSection = document.querySelector(window.location.hash);
-      if (targetSection) {
-        const scrollMarginTop = parseInt(getComputedStyle(targetSection).scrollMarginTop) || 0;
-        window.scrollTo({
-          top: targetSection.offsetTop - scrollMarginTop,
-          behavior: 'smooth',
-        });
+      if (document.querySelector(window.location.hash)) {
+        setTimeout(() => {
+          let section = document.querySelector(window.location.hash);
+          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          window.scrollTo({
+            top: section.offsetTop - parseInt(scrollMarginTop),
+            behavior: 'smooth'
+          });
+        }, 100);
       }
     }
   });
@@ -192,24 +200,23 @@
   /**
    * Navmenu Scrollspy
    */
-  const updateActiveNavLink = debounce(() => {
-    const scrollPosition = window.scrollY + 200;
-    navmenuLinks.forEach((link) => {
-      if (!link.hash) return;
-      const section = document.querySelector(link.hash);
+  let navmenulinks = document.querySelectorAll('.navmenu a');
+
+  function navmenuScrollspy() {
+    navmenulinks.forEach(navmenulink => {
+      if (!navmenulink.hash) return;
+      let section = document.querySelector(navmenulink.hash);
       if (!section) return;
-
-      if (
-        scrollPosition >= section.offsetTop &&
-        scrollPosition <= section.offsetTop + section.offsetHeight
-      ) {
-        document.querySelector('.navmenu a.active')?.classList.remove('active');
-        link.classList.add('active');
+      let position = window.scrollY + 200;
+      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+        navmenulink.classList.add('active');
       } else {
-        link.classList.remove('active');
+        navmenulink.classList.remove('active');
       }
-    });
-  });
+    })
+  }
+  window.addEventListener('load', navmenuScrollspy);
+  document.addEventListener('scroll', navmenuScrollspy);
 
-  window.addEventListener('scroll', updateActiveNavLink);
 })();

@@ -5,7 +5,7 @@
 ---
 
 ## 🖌️ **Live Preview**
-🌐 **Explore Here:** [Portfolio](https://rajtilak-2020.github.io/K-Rajtilak_s-Portfolio-V2/)
+🌐 **Explore Here:** [Portfolio](https://krajtilak.vercel.app)
 
 ---
 

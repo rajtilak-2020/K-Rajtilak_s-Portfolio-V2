@@ -1,6 +1,6 @@
 # K Rajtilak's Portfolio Website 🌟
 
-[![Open in Browser](https://img.shields.io/badge/Status%20-Live-brightgreen?style=for-the-badge&logo=vercel)](https://krajtilak.vercel.app)
+[![Open in Browser](https://img.shields.io/badge/Status%20-Live-brightgreen?style=for-the-badge&logo=googlechrome)](https://krajtilak.vercel.app)
 
 Welcome to the GitHub repository for my personal portfolio website. This repository contains the source code and project structure for my portfolio, which showcases my skills, projects, services, and blog.
 

@@ -879,9 +879,10 @@ transform-origin: top right;
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
+/* Portfolio Filters */
 .portfolio .portfolio-filters {
   padding: 0;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
   list-style: none;
   text-align: center;
 }
@@ -889,15 +890,14 @@ transform-origin: top right;
 .portfolio .portfolio-filters li {
   cursor: pointer;
   display: inline-block;
-  padding: 8px 20px 10px 20px;
-  margin: 0;
+  padding: 8px 20px 10px;
+  margin: 0 0 5px;
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
-  margin-bottom: 5px;
   border-radius: 50px;
-  transition: all 0.3s ease-in-out;
   font-family: var(--heading-font);
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .portfolio .portfolio-filters li:hover,
@@ -906,21 +906,14 @@ transform-origin: top right;
   background-color: var(--accent-color);
 }
 
-.portfolio .portfolio-filters li:first-child {
-  margin-left: 0;
-}
-
-.portfolio .portfolio-filters li:last-child {
-  margin-right: 0;
-}
-
 @media (max-width: 575px) {
   .portfolio .portfolio-filters li {
     font-size: 14px;
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
   }
 }
 
+/* Portfolio Item */
 .portfolio .portfolio-item {
   position: relative;
   overflow: hidden;
@@ -933,33 +926,31 @@ transform-origin: top right;
   right: 12px;
   bottom: -100%;
   z-index: 3;
-  transition: all ease-in-out 0.5s;
   background: color-mix(in srgb, var(--background-color), transparent 10%);
   padding: 15px;
+  transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
 }
 
 .portfolio .portfolio-item .portfolio-info h4 {
   font-size: 18px;
   font-weight: 600;
-  padding-right: 50px;
+  margin: 0 50px 10px 0; /* Combined padding-right and spacing */
 }
 
 .portfolio .portfolio-item .portfolio-info p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   font-size: 14px;
-  margin-bottom: 0;
-  padding-right: 50px;
+  margin: 0 50px 0 0; /* Combined padding-right and spacing */
 }
 
 .portfolio .portfolio-item .portfolio-info .preview-link,
 .portfolio .portfolio-item .portfolio-info .details-link {
   position: absolute;
-  right: 50px;
   font-size: 24px;
-  top: calc(50% - 14px);
+  top: 50%;
+  transform: translateY(-50%);
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-  transition: 0.3s;
-  line-height: 0;
+  transition: color 0.3s;
 }
 
 .portfolio .portfolio-item .portfolio-info .preview-link:hover,
@@ -972,10 +963,15 @@ transform-origin: top right;
   font-size: 28px;
 }
 
+.portfolio .portfolio-item .portfolio-info .preview-link {
+  right: 50px;
+}
+
 .portfolio .portfolio-item:hover .portfolio-info {
   opacity: 1;
   bottom: 0;
 }
+
 
 /*--------------------------------------------------------------
 # Blog section

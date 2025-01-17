@@ -42,19 +42,41 @@ The website uses modern web development practices and a responsive design to ens
 
 ## Project Structure 📂
 ```plaintext
-├── public
-│   ├── images       # Static assets (profile picture, icons, etc.)
-│   └── favicon.ico  # Website favicon
-├── src
-│   ├── components   # Reusable components (header, footer, etc.)
-│   ├── pages        # Page-specific files (index, blog, contact, etc.)
-│   ├── styles       # Global and component-specific CSS files
-│   ├── utils        # Utility functions (animations, API calls, etc.)
-│   └── assets       # Fonts, additional images
-├── .vercel          # Vercel deployment configuration
-├── package.json     # Project dependencies and scripts
-├── README.md        # Documentation
-└── index.html       # Main HTML file
+Directory structure:
+└── rajtilak-2020-k-rajtilak_s-portfolio-v2/
+    ├── README.md
+    ├── LICENSE
+    ├── index.html
+    └── assets/
+        ├── css/
+        │   └── main.css
+        ├── img/
+        │   ├── Raj.webp
+        │   └── about.webp
+        ├── js/
+        │   └── main.js
+        └── vendor/
+            ├── aos/
+            │   └── aos.js
+            ├── bootstrap-icons/
+            │   ├── bootstrap-icons.css
+            │   ├── bootstrap-icons.json
+            │   └── fonts/
+            │       └── bootstrap-icons.woff2
+            ├── email-form/
+            │   └── validate.js
+            ├── glightbox/
+            │   └── js/
+            │       └── glightbox.js
+            ├── imagesloaded/
+            ├── isotope-layout/
+            ├── purecounter/
+            │   └── purecounter_vanilla.js
+            ├── typed.js/
+            │   └── typed.umd.js
+            └── waypoints/
+                └── noframework.waypoints.js
+
 ```
 
 ## Deployment 🚀
@@ -105,11 +127,39 @@ The optimized build will be located in the `dist` folder.
 
 ```mermaid
 graph TD
-    A[Portfolio Website] --> B[Hero Section]
-    A --> C[Projects Section]
-    A --> D[Services Section]
-    A --> E[Blog Section]
-    A --> F[Contact and Social Links]
+    A[K Rajtilak's Website] 
+    A --> B[README.md]
+    A --> C[LICENSE]
+    A --> D[index.html]
+    A --> E[assets/]
+    E --> F[css/]
+    F --> F1[main.css]
+    E --> G[img/]
+    G --> G1[Raj.webp]
+    G --> G2[about.webp]
+    E --> H[js/]
+    H --> H1[main.js]
+    E --> I[vendor/]
+    I --> J[aos/]
+    J --> J1[aos.js]
+    I --> K[bootstrap-icons/]
+    K --> K1[bootstrap-icons.css]
+    K --> K2[bootstrap-icons.json]
+    K --> K3[fonts/]
+    K3 --> K31[bootstrap-icons.woff2]
+    I --> L[email-form/]
+    L --> L1[validate.js]
+    I --> M[glightbox/]
+    M --> M1[js/]
+    M1 --> M11[glightbox.js]
+    I --> N[imagesloaded/]
+    I --> O[isotope-layout/]
+    I --> P[purecounter/]
+    P --> P1[purecounter_vanilla.js]
+    I --> Q[typed.js/]
+    Q --> Q1[typed.umd.js]
+    I --> R[waypoints/]
+    R --> R1[noframework.waypoints.js]
 ```
 
 

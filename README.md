@@ -42,19 +42,41 @@ The website uses modern web development practices and a responsive design to ens
 
 ## Project Structure 📂
 ```plaintext
-├── public
-│   ├── images       # Static assets (profile picture, icons, etc.)
-│   └── favicon.ico  # Website favicon
-├── src
-│   ├── components   # Reusable components (header, footer, etc.)
-│   ├── pages        # Page-specific files (index, blog, contact, etc.)
-│   ├── styles       # Global and component-specific CSS files
-│   ├── utils        # Utility functions (animations, API calls, etc.)
-│   └── assets       # Fonts, additional images
-├── .vercel          # Vercel deployment configuration
-├── package.json     # Project dependencies and scripts
-├── README.md        # Documentation
-└── index.html       # Main HTML file
+Directory structure:
+└── rajtilak-2020-k-rajtilak_s-portfolio-v2/
+    ├── README.md
+    ├── LICENSE
+    ├── index.html
+    └── assets/
+        ├── css/
+        │   └── main.css
+        ├── img/
+        │   ├── Raj.webp
+        │   └── about.webp
+        ├── js/
+        │   └── main.js
+        └── vendor/
+            ├── aos/
+            │   └── aos.js
+            ├── bootstrap-icons/
+            │   ├── bootstrap-icons.css
+            │   ├── bootstrap-icons.json
+            │   └── fonts/
+            │       └── bootstrap-icons.woff2
+            ├── email-form/
+            │   └── validate.js
+            ├── glightbox/
+            │   └── js/
+            │       └── glightbox.js
+            ├── imagesloaded/
+            ├── isotope-layout/
+            ├── purecounter/
+            │   └── purecounter_vanilla.js
+            ├── typed.js/
+            │   └── typed.umd.js
+            └── waypoints/
+                └── noframework.waypoints.js
+
 ```
 
 ## Deployment 🚀

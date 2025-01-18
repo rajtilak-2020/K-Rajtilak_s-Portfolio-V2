@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".php-email-form");
+  const form = document.querySelector(".email-form");
   const loading = document.querySelector(".loading");
   const errorMessage = document.querySelector(".error-message");
   const sentMessage = document.querySelector(".sent-message");
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
           loading.style.display = "none";
           errorMessage.style.display = "block";
-          errorMessage.textContent = "There was an error sending your message. Please try again.";
+          errorMessage.textContent = "There was an error sending your message. Please try again later.";
       }
   });
 });

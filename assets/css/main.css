@@ -1,10 +1,10 @@
 /*-----------
  Global Font
  ------------ */
-:root {
-  --default-font: "Times New Roman",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+ :root {
+  --default-font: "Times New Roman", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
 }
 
 /*-------------
@@ -14,7 +14,7 @@ Global Colors
   --background-color: #000000;
   --default-color: #ffffff;
   --heading-color: #f6f6f6;
-  --surface-color: #0b0b0b;
+  --surface-color: #101010;
   --contrast-color: #ffffff;
   --accent-color: #ee0000;
   --nav-color: #ffffff;
@@ -25,14 +25,9 @@ Global Colors
   --nav-dropdown-hover-color: #0563bb;
 }
 
-.light-background {
-  --background-color: #000000;
-  --surface-color: #4a4a4a;
-}
-
 /*-----------
 Smooth scroll
-*/
+-------------*/
 :root {
   scroll-behavior: smooth;
 }
@@ -590,11 +585,16 @@ section,
 .hero img {
   position: absolute;
   inset: 0;
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .hero:before {
@@ -608,6 +608,13 @@ section,
 .hero .container {
   position: relative;
   z-index: 3;
+  text-align: left;
+  animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .hero h2 {

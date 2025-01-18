@@ -1,9 +1,12 @@
-
+/*-----------
+ Global Font
+ ------------ */
 :root {
   --default-font: "Times New Roman",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
 }
+
 /*-------------
 Global Colors 
 --------------*/
@@ -27,15 +30,16 @@ Global Colors
   --surface-color: #4a4a4a;
 }
 
-
-/* Smooth scroll */
+/*-----------
+Smooth scroll
+*/
 :root {
   scroll-behavior: smooth;
 }
 
-/*--------------------------------------------------------------
+/*--------------------------------
 # General Styling & Shared Classes
---------------------------------------------------------------*/
+----------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -63,11 +67,10 @@ h6 {
   font-family: var(--heading-font);
 }
 
-
-/* ---------------------------
-  PHP Email Form Messages
-------------------------------*/
-.php-email-form .error-message {
+/* ----------------
+Email Form Messages
+-------------------*/
+.email-form .error-message {
   display: none;
   background: #df1529;
   color: #ffffff;
@@ -77,7 +80,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .sent-message {
+.email-form .sent-message {
   display: none;
   color: #ffffff;
   background: #059652;
@@ -87,7 +90,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .loading {
+.email-form .loading {
   display: none;
   background: var(--surface-color);
   text-align: center;
@@ -95,7 +98,7 @@ h6 {
   margin-bottom: 24px;
 }
 
-.php-email-form .loading:before {
+.email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -104,10 +107,10 @@ h6 {
   margin: 0 10px -6px 0;
   border: 3px solid var(--accent-color);
   border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
+  animation: email-form-loading 1s linear infinite;
 }
 
-@keyframes php-email-form-loading {
+@keyframes email-form-loading {
   0% {
     transform: rotate(0deg);
   }
@@ -117,9 +120,9 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
+/*-------------
 # Global Header
---------------------------------------------------------------*/
+---------------*/
 .header {
   color: var(--default-color);
   position: fixed;
@@ -180,9 +183,9 @@ h6 {
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
 }
 
-/*--------------------------------------------------------------
+/*---------------
 # Navigation Menu
---------------------------------------------------------------*/
+-----------------*/
 .navmenu {
   padding: 0;
   z-index: 9997;
@@ -254,9 +257,9 @@ h6 {
   display: block;
 }
 
-/*--------------------------------------------------------------
+/*-------------
 # Global Footer
---------------------------------------------------------------*/
+---------------*/
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -302,9 +305,9 @@ h6 {
 }
 
 .footer .social-links a:hover {
-  color: rgb(255, 255, 255); /* Change icon color on hover */
+  color: rgb(255, 255, 255);
     text-shadow: 0 0 50px red, 0 0 60px red, 0 0 70px red;
-    transform: scale(1.2); /* Slightly enlarge on hover */
+    transform: scale(1.2);
   text-decoration: none;
 }
 
@@ -319,12 +322,12 @@ h6 {
   }
 .footer .credits :hover{
   text-shadow: 0 0 10px rgb(218, 0, 0), 0 0 20px rgb(148, 148, 148);
-    transform: scale(1.2); /* Slightly enlarge on hover */
+    transform: scale(1.2);
 }
 
-/*--------------------------------------------------------------
+/*---------
 # Preloader
---------------------------------------------------------------*/
+-----------*/
  #preloader {
   position: fixed;
   top: 0;
@@ -431,9 +434,10 @@ h6 {
       transform: translate(-2px);
   }
 } 
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
+
+/*---------------------
+# Scroll To Top Button
+-----------------------*/
 .scroll-top {
   position: fixed;
   visibility: hidden;
@@ -465,18 +469,18 @@ h6 {
   bottom: 15px;
 }
 
-/*--------------------------------------------------------------
+/*---------------------------------------------
 # Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
+-----------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
 }
 
-/*--------------------------------------------------------------
+/*--------------------------------
 # Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
+----------------------------------*/
 .page-title {
   --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
   color: var(--default-color);
@@ -512,9 +516,9 @@ h6 {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-/*--------------------------------------------------------------
+/*---------------
 # Global Sections
---------------------------------------------------------------*/
+-----------------*/
 section,
 .section {
   color: var(--default-color);
@@ -523,9 +527,9 @@ section,
   overflow: clip;
 }
 
-/*--------------------------------------------------------------
+/*---------------------
 # Global Section Titles
---------------------------------------------------------------*/
+-----------------------*/
 .section-title {
   text-align: center;
   padding-bottom: 60px;
@@ -570,9 +574,9 @@ section,
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
+/*-------------
 # Hero Section
---------------------------------------------------------------*/
+---------------*/
 .hero {
   width: 100%;
   min-height: 100vh;
@@ -638,7 +642,7 @@ section,
 .hero .social-links a:hover {
   color: var(--accent-color);
   text-shadow: 0 0 50px red, 0 0 60px red, 0 0 65px red;
-    transform: scale(1.2); /* Slightly enlarge on hover */
+    transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -711,9 +715,9 @@ transform-origin: top right;
 }
 }
 
-/*--------------------------------------------------------------
+/*-------------
 # About Section
---------------------------------------------------------------*/
+---------------*/
 .about .content h2 {
   font-weight: 700;
   font-size: 24px;
@@ -741,9 +745,9 @@ transform-origin: top right;
   line-height: 0;
 }
 
-/*--------------------------------------------------------------
+/*-------------
 # Stats Section
---------------------------------------------------------------*/
+---------------*/
 .stats i {
   background-color: var(--accent-color);
   color: var(--contrast-color);
@@ -780,9 +784,9 @@ transform-origin: top right;
   font-size: 16px;
 }
 
-/*--------------------------------------------------------------
+/*--------------
 # Skills Section
---------------------------------------------------------------*/
+----------------*/
 .skills .progress {
   height: 60px;
   display: block;
@@ -817,9 +821,9 @@ transform-origin: top right;
   background-color: var(--accent-color);
 }
 
-/*--------------------------------------------------------------
+/*--------------
 # Resume Section
---------------------------------------------------------------*/
+----------------*/
 .resume .resume-title {
   color: var(--heading-color);
   font-size: 26px;
@@ -876,9 +880,9 @@ transform-origin: top right;
   border: 2px solid var(--accent-color);
 }
 
-/*--------------------------------------------------------------
+/*-----------------
 # Portfolio Section
---------------------------------------------------------------*/
+-------------------*/
 /* Portfolio Filters */
 .portfolio .portfolio-filters {
   padding: 0;
@@ -913,7 +917,7 @@ transform-origin: top right;
   }
 }
 
-/* Portfolio Item */
+/* Portfolio Items */
 .portfolio .portfolio-item {
   position: relative;
   overflow: hidden;
@@ -934,13 +938,13 @@ transform-origin: top right;
 .portfolio .portfolio-item .portfolio-info h4 {
   font-size: 18px;
   font-weight: 600;
-  margin: 0 50px 10px 0; /* Combined padding-right and spacing */
+  margin: 0 50px 10px 0;
 }
 
 .portfolio .portfolio-item .portfolio-info p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   font-size: 14px;
-  margin: 0 50px 0 0; /* Combined padding-right and spacing */
+  margin: 0 50px 0 0;
 }
 
 .portfolio .portfolio-item .portfolio-info .preview-link,
@@ -972,10 +976,9 @@ transform-origin: top right;
   bottom: 0;
 }
 
-
-/*--------------------------------------------------------------
+/*------------
 # Blog section
---------------------------------------------------------------*/
+--------------*/
 #blog h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -1013,7 +1016,6 @@ transform-origin: top right;
   }
 }
 
-
 #blog .section-title {
   animation: fadeIn 1.2s ease-in-out;
 }
@@ -1027,17 +1029,14 @@ transform-origin: top right;
   }
 }
 
-
 #blog .btn-primary:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
 
-
-
-/*--------------------------------------------------------------
+/*----------------
 # Services Section
---------------------------------------------------------------*/
+------------------*/
 .services .service-item {
   background-color: var(--surface-color);
   box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
@@ -1165,9 +1164,9 @@ transform-origin: top right;
 }
 
 
-/*--------------------------------------------------------------
+/*---------------
 # Contact Section
---------------------------------------------------------------*/
+-----------------*/
 .mapbox {
   position: relative;
   width: 100%;
@@ -1231,13 +1230,13 @@ transform-origin: top right;
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact .email-form {
   height: 100%;
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .email-form input[type=text],
+.contact .email-form input[type=email],
+.contact .email-form textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1247,19 +1246,19 @@ transform-origin: top right;
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
+.contact .email-form input[type=text]:focus,
+.contact .email-form input[type=email]:focus,
+.contact .email-form textarea:focus {
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact .email-form input[type=text]::placeholder,
+.contact .email-form input[type=email]::placeholder,
+.contact .email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1268,8 +1267,8 @@ transform-origin: top right;
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
   text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255);
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    transform: scale(1.1);
 }

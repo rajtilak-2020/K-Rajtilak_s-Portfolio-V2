@@ -11,7 +11,11 @@
 Global Colors 
 --------------*/
 :root { 
+  --primary-color: #ee0000;
+  --text-color: #f6f6f6;
+  --accent-color: #101010;
   --background-color: #000000;
+  --secondary-color: #ffffff;
   --default-color: #ffffff;
   --heading-color: #f6f6f6;
   --surface-color: #101010;
@@ -19,10 +23,9 @@ Global Colors
   --accent-color: #ee0000;
   --nav-color: #ffffff;
   --nav-hover-color: #ee0000;
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #ffffff;
-  --nav-dropdown-color: #212529;
-  --nav-dropdown-hover-color: #0563bb;
+  --scrollbar-bg: #101010;
+  --scrollbar-thumb: #ee0000;
+
 }
 
 /*-----------
@@ -32,13 +35,48 @@ Smooth scroll
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+a[href^="#"] {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .navmenu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navmenu li {
+    margin: 10px 0;
+  }
+}
+.button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 /*--------------------------------
 # General Styling & Shared Classes
 ----------------------------------*/
 body {
-  color: var(--default-color);
+  font-family: 'Times New Roman', Times, serif;
+  color: var(--text-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -62,9 +100,25 @@ h6 {
   font-family: var(--heading-font);
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+  background: var(--scrollbar-bg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
 /* ----------------
 Email Form Messages
 -------------------*/
+
 .email-form .error-message {
   display: none;
   background: #df1529;
@@ -573,13 +627,13 @@ section,
 # Hero Section
 ---------------*/
 .hero {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  padding: 80px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/hero-bg.jpg') center/cover;
+  color: var(--secondary-color);
+  text-align: center;
 }
 
 .hero img {
@@ -752,6 +806,51 @@ transform-origin: top right;
   line-height: 0;
 }
 
+/* Button Styles */
+.btn-download-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background-color: #ee0000;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.btn-download-cv:hover {
+  background-color: #ffffff;
+  transform: scale(1.1); 
+  box-shadow: 0 8px 15px rgba(255, 46, 46, 0.2);
+}
+
+.btn-download-cv:before {
+  font-weight: 900;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn-download-cv:hover:before {
+  transform: translateX(5px);
+}
+
+.btn-download-cv:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5); 
+}
+
+/* Optional: Adding a small ripple effect on click */
+.btn-download-cv:active {
+  transform: scale(0.95);
+  transition: all 0.1s ease-in-out;
+}
+
 /*-------------
 # Stats Section
 ---------------*/
@@ -834,7 +933,7 @@ transform-origin: top right;
 .skills .progress-bar {
   width: 1px;
   height: 10px;
-  transition: 0.9s;
+  transition: 0.9s ease;
   background-color: var(--accent-color);
 }
 

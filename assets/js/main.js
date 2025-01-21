@@ -33,18 +33,6 @@
   });
 
   /**
-   * Toggle mobile nav dropdowns
-   */
-  navmenu.querySelectorAll('.toggle-dropdown').forEach((dropdownToggle) => {
-    dropdownToggle.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-  /**
    * Scroll top button
    */
   function toggleScrollTop() {
@@ -63,7 +51,7 @@
     });
   });
 
-  window.addEventListener('scroll', debounce(toggleScrollTop, 50));
+  window.addEventListener('scroll', throttle(toggleScrollTop, 50));
   window.addEventListener('load', toggleScrollTop);
 
   /**
@@ -120,9 +108,7 @@
   /**
    * GLightbox initialization
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox',
-  });
+  const glightbox = GLightbox({ selector: '.glightbox' });
 
   /**
    * Isotope layout and filters
@@ -205,17 +191,29 @@
     });
   }
 
-  window.addEventListener('scroll', debounce(navmenuScrollspy, 50));
+  window.addEventListener('scroll', throttle(navmenuScrollspy, 50));
   window.addEventListener('load', navmenuScrollspy);
 
   /**
-   * Debounce function to optimize scroll listeners
+   * Throttle function to optimize scroll listeners
    */
-  function debounce(func, wait = 20) {
-    let timeout;
+  function throttle(func, limit = 50) {
+    let lastFunc;
+    let lastRan;
     return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
+      const context = this;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(() => {
+          if (Date.now() - lastRan >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
     };
   }
 })();
